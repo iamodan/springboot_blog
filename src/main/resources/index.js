@@ -1,0 +1,7 @@
+/**
+ * 
+ */
+
+ function hi() {
+	 document.querySelector();
+}
