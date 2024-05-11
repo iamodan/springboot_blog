@@ -1,0 +1,32 @@
+#docker run -p 5432:5432 --name postgres -e POSTGRES_PASSWORD=1234 -v C:\volumn\postgres:/var/lib/postgresql/data postgres:latest
+
+server:
+  port: 8000
+  servlet:
+    encoding:
+      charset: UTF-8
+      enabled: true
+      force: true
+
+logging:
+  level:
+    com.example: debug
+
+spring:
+  datasource:
+    driver-class-name: org.postgresql.Driver 
+    url: jdbc:postgresql://localhost:5432/postgres
+    username: postgres
+    password: 123
+  jpa:
+    open-in-view: false
+    database: postgresql
+    hibernate:
+      ddl-auto: update
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+    show-sql: true
+    properties:
+      hibernate:
+      "[format_sql]": true
+      
