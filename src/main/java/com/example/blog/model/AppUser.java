@@ -12,11 +12,11 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
 // ORM -> Java(다른언어) Object -> 테이블로 매핑해주는 기술
-@Entity // User 클래스가 MySQL에 테이블이 생성이 된다
+@Entity(name = "appuser") // User 클래스가 MySQL에 테이블이 생성이 된다
 public class AppUser {
 
 	@Id // Primary key
-	@GeneratedValue(strategy = GenerationType.IDENTITY.SEQUENCE) 
+	@GeneratedValue(strategy = GenerationType.IDENTITY) 
 	// 프로젝트에서 연결된 DB의 넘버링 전략을 따라나다
 	private int id; // 시퀀스, auto_increment
 	
