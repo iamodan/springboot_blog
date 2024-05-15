@@ -1,5 +1,3 @@
-#docker run -p 5432:5432 --name postgres -e POSTGRES_PASSWORD=1234 -v C:\volumn\postgres:/var/lib/postgresql/data postgres:latest
-
 server:
   port: 8000
   servlet:
@@ -15,28 +13,42 @@ logging:
 
 spring:
   datasource:
-    driver-class-name: org.postgresql.Driver 
-    url: jdbc:postgresql://localhost:5432/blog
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/postgres
     username: postgres
     password: 123
   jpa:
     open-in-view: false
     database: postgresql
     hibernate:
-      ddl-auto: create
+      ddl-auto: create 
       naming:
         physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
     show-sql: true
     properties:
-      hibernate:
-      "[format_sql]": true
-  devtools:
-    livereload:
-      enabled: true
-    restart:
-      enabled: true
-  freemarker:
-    cache: false
-  thymeleaf:
-    cache: false
+      hibernate: 
+        "[format_sql]": true
 
+        
+        # docker run -p 5432:5432 --name postgres -e POSTGRES_PASSWORD=123 -v C:\volumn\postgres:/var/lib/postgresql/data postgres:latest
+#spring:
+#  datasource:
+#    driver-class-name: com.mysql.cj.jdbc.Driver
+#    url: jdbc:mysql://localhost:3306/blog?serverTimezone=Asia/Seoul
+#    username: cos
+#    password: cos1234
+    
+#  jpa:
+#    open-in-view: true
+#    hibernate:
+#      ddl-auto: create
+#      naming:
+#        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+#      use-new-id-generator-mappings: false
+#    show-sql: true
+#    properties:
+#      hibernate.format_sql: true
+#
+#  jackson:
+#    serialization:
+#      fail-on-empty-beans: false
