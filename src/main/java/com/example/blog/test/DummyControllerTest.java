@@ -5,14 +5,14 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.blog.model.AppUser;
+import com.example.blog.model.RoleType;
 import com.example.blog.repository.AppUserRepository;
 
 @RestController
 public class DummyControllerTest {
-	
+
 	@Autowired
-	private AppUserRepository  AppUserRepository;
-	
+	private AppUserRepository AppUserRepository;
 
 	// http://localhost:8000/blog/dummy/join(요청)
 	// http의 body에 username, password, email 데이터를 가지고(요청)
@@ -24,10 +24,10 @@ public class DummyControllerTest {
 		System.out.println("email : " + AppUser.getEmail());
 		System.out.println("role :" + AppUser.getRole());
 		System.out.println("createDate :" + AppUser.getCreateDate());
-		
+
+		AppUser.setRole(RoleType.USER);
 		AppUserRepository.save(AppUser);
 		return "회원가입이 완료되었습니다.";
 	}
-	
-	
+
 }

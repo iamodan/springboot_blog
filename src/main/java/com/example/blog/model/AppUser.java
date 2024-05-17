@@ -2,11 +2,13 @@ package com.example.blog.model;
 
 import java.sql.Timestamp;
 
-import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.DynamicInsert;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -21,6 +23,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Builder // 빌더 패턴
 @Entity(name = "appuser") // User 클래스가 MySQL에 테이블이 생성이 된다
+@DynamicInsert // insert시에 null인 빌드를 제외시켜준
 public class AppUser {
 
 	@Id // Primary key
@@ -37,8 +40,10 @@ public class AppUser {
 	@Column(nullable = false, length = 50)
 	private String email;
 
-	@ColumnDefault("'user'") // 문자라는걸 알려줘야함
-	private String role; // Enum을 쓰는게 좋다. // admin, user, manager
+	// @ColumnDefault("'user'") // 문자라는걸 알려줘야함
+	// DB는 RoleType이라는게 없다
+	@Enumerated(EnumType.STRING)
+	private RoleType role; // Enum을 쓰는게 좋다. // ADMIN, USER
 
 	@CreationTimestamp // 시간이 자동 입력
 	private Timestamp createDate;
